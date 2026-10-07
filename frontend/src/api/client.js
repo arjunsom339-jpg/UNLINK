@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const defaultBaseURL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api');
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
+  baseURL: defaultBaseURL,
   timeout: 15000,
   headers: { 'Content-Type': 'application/json' },
 });
@@ -61,7 +65,7 @@ api.interceptors.response.use(
 
       try {
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api'}/auth/refresh`,
+          `${defaultBaseURL}/auth/refresh`,
           { refreshToken }
         );
 
