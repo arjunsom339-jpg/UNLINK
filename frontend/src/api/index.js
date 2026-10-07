@@ -383,4 +383,10 @@ export const campusExchangeApi = {
   getAdminAnalytics:           ()                 => api.get('/campus-exchange/admin/analytics'),
 };
 
+export const aiApi = {
+  chat:   (data) => api.post('/ai/chat', data),
+  status: ()     => api.get('/ai/status'),
+};
+
+
 

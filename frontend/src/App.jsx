@@ -4,6 +4,7 @@ import useAuthStore from './store/authStore';
 
 // Public & Landing
 import LandingPage             from './pages/LandingPage';
+import CampusAIChat            from './components/ai/CampusAIChat';
 
 // Dedicated Auth Pages
 import LoginPage              from './pages/auth/LoginPage';
@@ -159,6 +160,9 @@ function App() {
         {/* ── Fallback ────────────────────────────────────────── */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+
+      {/* ── Global UniLink Campus AI Assistant ────────────────── */}
+      <CampusAIChat />
     </BrowserRouter>
   );
 }

@@ -243,6 +243,7 @@ export default function ResponsiveHeroBanner({
   primaryButtonHref   = '/login/student',
   secondaryButtonText = 'Ask Campus AI',
   secondaryButtonHref = '/login/student',
+  onSecondaryClick,
   partnersTitle       = 'Discover what is happening across your campus',
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -468,10 +469,22 @@ export default function ResponsiveHeroBanner({
             {primaryButtonText}
             <ArrowRight size={16} />
           </Link>
-          <Link to={secondaryButtonHref} className="ul-btn-secondary">
-            <BrainCircuit size={17} style={{ color: '#a5b4fc' }} />
-            {secondaryButtonText}
-          </Link>
+          {onSecondaryClick ? (
+            <button
+              type="button"
+              onClick={onSecondaryClick}
+              className="ul-btn-secondary"
+              style={{ cursor: 'pointer', fontFamily: 'inherit' }}
+            >
+              <BrainCircuit size={17} style={{ color: '#a5b4fc' }} />
+              {secondaryButtonText}
+            </button>
+          ) : (
+            <Link to={secondaryButtonHref} className="ul-btn-secondary">
+              <BrainCircuit size={17} style={{ color: '#a5b4fc' }} />
+              {secondaryButtonText}
+            </Link>
+          )}
         </div>
 
         {/* Ecosystem discovery strip */}

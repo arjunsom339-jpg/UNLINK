@@ -5,8 +5,11 @@ import {
 } from 'lucide-react';
 import ResponsiveHeroBanner from '../components/ui/responsive-hero-banner';
 import '../components/ui/animated-card.css';
+import useAiStore from '../store/aiStore';
 
 export default function LandingPage() {
+  const { openChat } = useAiStore();
+
   return (
     <div style={{ background: 'var(--bg-app)', display: 'flex', flexDirection: 'column' }}>
       {/* Hero Section — nav is embedded inside the full-bleed hero banner */}
@@ -19,7 +22,7 @@ export default function LandingPage() {
         primaryButtonText="Explore Campus"
         primaryButtonHref="/login/student"
         secondaryButtonText="Ask Campus AI"
-        secondaryButtonHref="/login/student"
+        onSecondaryClick={openChat}
         partnersTitle="Discover what is happening across your campus"
       />
 

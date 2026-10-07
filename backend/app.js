@@ -1,5 +1,7 @@
 'use strict';
 
+const path       = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 require('dotenv').config();
 
 const express    = require('express');
@@ -7,7 +9,6 @@ const cors       = require('cors');
 const helmet     = require('helmet');
 const morgan     = require('morgan');
 const rateLimit  = require('express-rate-limit');
-const path       = require('path');
 
 const { connectDB }              = require('./src/config/database');
 const { initializeFirebase }     = require('./src/config/firebase');
@@ -33,6 +34,7 @@ const mentorshipRoutes = require('./src/routes/mentorshipRoutes');
 const placementRoutes  = require('./src/routes/placementRoutes');
 const clubRoutes       = require('./src/routes/clubRoutes');
 const campusExchangeRoutes = require('./src/routes/campusExchangeRoutes');
+const aiRoutes             = require('./src/routes/aiRoutes');
 const skillService     = require('./src/services/skillService');
 
 const app  = express();
@@ -104,6 +106,7 @@ app.use('/api/mentorship',  mentorshipRoutes);
 app.use('/api/placements',  placementRoutes);
 app.use('/api/clubs',       clubRoutes);
 app.use('/api/campus-exchange', campusExchangeRoutes);
+app.use('/api/ai',              aiRoutes);
 
 // ── 404 & Error Handlers ───────────────────────────────────────────────────
 app.use(notFound);
