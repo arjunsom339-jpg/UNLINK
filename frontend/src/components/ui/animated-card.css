@@ -1,0 +1,196 @@
+/* From Uiverse.io by MuhammadHasann */ 
+.uiverse-card {
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(240, 15%, 9%);
+  --paragraph: hsl(0, 0%, 83%);
+  --line: hsl(240, 9%, 17%);
+  --primary: hsl(266, 92%, 58%);
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1.5rem;
+  width: 100%; /* Responsive width for grid */
+  height: 100%;
+  background-color: hsla(240, 15%, 9%, 1);
+  background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 64%, hsla(263, 93%, 56%, 1) 0px, transparent 85%),
+    radial-gradient(at 41% 94%, hsla(284, 100%, 84%, 1) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%);
+
+  border-radius: 1rem;
+  box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+  transition: transform 0.3s ease;
+}
+
+.uiverse-card:hover {
+  transform: translateY(-5px);
+}
+
+.uiverse-card .card__border {
+  overflow: hidden;
+  pointer-events: none;
+
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  background-image: linear-gradient(
+    0deg,
+    hsl(0, 0%, 100%) -50%,
+    hsl(0, 0%, 40%) 100%
+  );
+
+  border-radius: 1rem;
+}
+
+.uiverse-card .card__border::before {
+  content: "";
+  pointer-events: none;
+
+  position: absolute;
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%), rotate(0deg);
+  transform-origin: left;
+
+  width: 200%;
+  height: 10rem;
+  background-image: linear-gradient(
+    0deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsl(277, 95%, 60%) 40%,
+    hsl(277, 95%, 60%) 60%,
+    hsla(0, 0%, 40%, 0) 100%
+  );
+
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.uiverse-card .card_title__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.uiverse-card .card_title__container .card_title {
+  font-size: 1.25rem;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.uiverse-card .card_title__container .card_paragraph {
+  margin-top: 0.25rem;
+  width: 100%;
+
+  font-size: 0.88rem;
+  color: var(--paragraph);
+  line-height: 1.5;
+}
+
+.uiverse-card .line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--line);
+  border: none;
+  margin: 0.5rem 0;
+}
+
+.uiverse-card .card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.uiverse-card .card__list .card__list_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.uiverse-card .card__list .card__list_item .check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.uiverse-card .card__list .card__list_item .check .check_svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: var(--black);
+}
+
+.uiverse-card .card__list .card__list_item .list_text {
+  font-size: 0.85rem;
+  color: var(--white);
+}
+
+.uiverse-card .button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+
+  padding: 0.75rem;
+  width: 100%;
+  background-image: linear-gradient(
+    0deg,
+    rgba(94, 58, 238, 1) 0%,
+    rgba(197, 107, 240, 1) 100%
+  );
+
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+
+  border: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 -2px 25px -4px var(--white);
+  transition: transform 0.2s;
+}
+
+.uiverse-card .button:hover {
+  transform: translateY(-2px);
+}
+
+.uiverse-card .secondary-link {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--paragraph);
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: color 0.2s;
+}
+
+.uiverse-card .secondary-link:hover {
+  color: var(--white);
+}

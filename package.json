@@ -1,0 +1,22 @@
+{
+  "name": "unilink",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UniLink — Unified Campus Platform",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:all": "node scripts/dev.js",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start": "node scripts/dev.js",
+    "start:backend": "npm --prefix backend start",
+    "test": "npm --prefix backend test",
+    "build": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "unilink",
+    "campus-platform"
+  ],
+  "author": "UniLink Team",
+  "license": "ISC"
+}
