@@ -4,6 +4,8 @@ import { GraduationCap, Mail, Lock, User, Hash, Building, Phone, Eye, EyeOff, Ar
 import toast from 'react-hot-toast';
 import { authApi } from '../../api';
 import useAuthStore from '../../store/authStore';
+import AuthBackground from '../../components/auth/AuthBackground';
+import '../../components/auth/auth.css';
 
 export default function StudentRegister() {
   const [form, setForm] = useState({
@@ -76,7 +78,7 @@ export default function StudentRegister() {
 
   return (
     <div className="auth-page" style={{ alignItems: 'flex-start', paddingTop: 40, paddingBottom: 40 }}>
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c1a2e 100%)', zIndex: 0 }} />
+      <AuthBackground />
 
       <div className="auth-card" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
         <Link to="/login/student" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,.4)', fontSize: '0.8rem', marginBottom: 20, textDecoration: 'none' }}>
@@ -88,19 +90,21 @@ export default function StudentRegister() {
           <div style={{
             width: 50,
             height: 50,
-            background: 'linear-gradient(135deg, #6366f1, #10b981)',
+            background: 'rgba(255, 255, 255, 0.18)',
+            border: '1px solid rgba(255, 255, 255, 0.35)',
             borderRadius: 14,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 12px',
+            boxShadow: '0 0 24px rgba(255,255,255,0.12), inset 0 1px 1px rgba(255,255,255,0.3)',
           }}>
             <GraduationCap size={24} color="#fff" />
           </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: 4 }}>
+          <h1 style={{ fontFamily: "'Urbanist', system-ui, sans-serif", fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: 4, textShadow: '0 1px 12px oklch(0 0 0 / 0.25)' }}>
             Create Student Account
           </h1>
-          <p style={{ color: 'rgba(255,255,255,.5)', fontSize: '0.83rem' }}>
+          <p style={{ color: 'rgba(255,255,255,.65)', fontSize: '0.83rem' }}>
             Register your official credentials for campus identity verification
           </p>
         </div>
@@ -250,9 +254,9 @@ export default function StudentRegister() {
           </button>
         </form>
 
-        <div style={{ textAlign: 'center', marginTop: 20, fontSize: '0.82rem', color: 'rgba(255,255,255,.45)' }}>
+        <div style={{ textAlign: 'center', marginTop: 20, fontSize: '0.82rem', color: 'rgba(255,255,255,.55)' }}>
           Already have an account?{' '}
-          <Link to="/login/student" style={{ color: 'var(--color-primary-400)', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/login/student" style={{ color: '#ffffff', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'rgba(255,255,255,0.5)', textUnderlineOffset: '2px' }}>
             Student Sign In
           </Link>
         </div>

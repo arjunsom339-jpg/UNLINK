@@ -4,6 +4,8 @@ import { BookOpen, Mail, Lock, User, Hash, Building, Phone, ArrowLeft } from 'lu
 import toast from 'react-hot-toast';
 import { authApi } from '../../api';
 import useAuthStore from '../../store/authStore';
+import AuthBackground from '../../components/auth/AuthBackground';
+import '../../components/auth/auth.css';
 
 export default function TeacherRegister() {
   const [form, setForm] = useState({
@@ -75,16 +77,16 @@ export default function TeacherRegister() {
   };
 
   return (
-    <div className="auth-page" style={{ alignItems: 'flex-start', paddingTop: 40, paddingBottom: 40, background: 'linear-gradient(135deg, #0c1a2e 0%, #0d2444 50%, #0c1a2e 100%)' }}>
-      <div style={{ position: 'absolute', top: '-150px', right: '-80px', width: 400, height: 400, background: 'radial-gradient(circle, rgba(14,165,233,.15) 0%, transparent 70%)', zIndex: 0 }} />
+    <div className="auth-page" style={{ alignItems: 'flex-start', paddingTop: 40, paddingBottom: 40 }}>
+      <AuthBackground />
 
-      <div className="auth-card" style={{ position: 'relative', zIndex: 1, maxWidth: 520, borderColor: 'rgba(14,165,233,.2)' }}>
+      <div className="auth-card" style={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
         <Link to="/login/teacher" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,.4)', fontSize: '0.8rem', marginBottom: 20, textDecoration: 'none' }}>
           <ArrowLeft size={14} /> Back to faculty login
         </Link>
 
         {/* Notice */}
-        <div style={{ background: 'rgba(14,165,233,.08)', border: '1px solid rgba(14,165,233,.2)', borderRadius: 10, padding: '10px 14px', marginBottom: 20, fontSize: '0.82rem', color: '#7dd3fc', lineHeight: 1.4 }}>
+        <div style={{ background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.2)', borderRadius: 14, padding: '10px 14px', marginBottom: 20, fontSize: '0.82rem', color: 'rgba(255,255,255,.75)', lineHeight: 1.4 }}>
           Teacher accounts are reviewed and verified by college administration before full access is activated.
         </div>
 
@@ -93,19 +95,21 @@ export default function TeacherRegister() {
           <div style={{
             width: 50,
             height: 50,
-            background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+            background: 'rgba(255, 255, 255, 0.18)',
+            border: '1px solid rgba(255, 255, 255, 0.35)',
             borderRadius: 14,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 12px',
+            boxShadow: '0 0 24px rgba(255,255,255,0.12), inset 0 1px 1px rgba(255,255,255,0.3)',
           }}>
             <BookOpen size={24} color="#fff" />
           </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: 4 }}>
+          <h1 style={{ fontFamily: "'Urbanist', system-ui, sans-serif", fontSize: '1.5rem', fontWeight: 800, color: '#fff', marginBottom: 4, textShadow: '0 1px 12px oklch(0 0 0 / 0.25)' }}>
             Request Faculty Access
           </h1>
-          <p style={{ color: 'rgba(255,255,255,.5)', fontSize: '0.83rem' }}>
+          <p style={{ color: 'rgba(255,255,255,.65)', fontSize: '0.83rem' }}>
             Register your institutional employee credentials
           </p>
         </div>
@@ -245,15 +249,15 @@ export default function TeacherRegister() {
             type="submit"
             className="btn btn-primary btn-full"
             disabled={loading}
-            style={{ marginTop: 8, background: '#0ea5e9', borderColor: '#0ea5e9' }}
+            style={{ marginTop: 8 }}
           >
             {loading ? 'Submitting Application...' : 'Submit Faculty Application'}
           </button>
         </form>
 
-        <div style={{ textAlign: 'center', marginTop: 20, fontSize: '0.82rem', color: 'rgba(255,255,255,.45)' }}>
+        <div style={{ textAlign: 'center', marginTop: 20, fontSize: '0.82rem', color: 'rgba(255,255,255,.55)' }}>
           Already have verified access?{' '}
-          <Link to="/login/teacher" style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'none' }}>
+          <Link to="/login/teacher" style={{ color: '#ffffff', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'rgba(255,255,255,0.5)', textUnderlineOffset: '2px' }}>
             Faculty Sign In
           </Link>
         </div>

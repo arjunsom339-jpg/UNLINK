@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Mail, ArrowLeft, KeyRound, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { authApi } from '../../api';
+import AuthBackground from '../../components/auth/AuthBackground';
+import '../../components/auth/auth.css';
 
 export default function ForgotPassword() {
   const [email, setEmail]       = useState('');
@@ -35,7 +37,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="auth-page">
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #090e17 0%, #151a28 50%, #0d121c 100%)', zIndex: 0 }} />
+      <AuthBackground />
 
       <div className="auth-card" style={{ position: 'relative', zIndex: 1, maxWidth: 460 }}>
         <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,.5)', fontSize: '0.82rem', marginBottom: 20, textDecoration: 'none' }}>
@@ -47,20 +49,21 @@ export default function ForgotPassword() {
           <div style={{
             width: 52,
             height: 52,
-            background: 'linear-gradient(135deg, #6366f1, #3b82f6)',
+            background: 'rgba(255, 255, 255, 0.18)',
+            border: '1px solid rgba(255, 255, 255, 0.35)',
             borderRadius: 14,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 14px',
-            boxShadow: '0 8px 24px rgba(99,102,241,.3)',
+            boxShadow: '0 0 24px rgba(255,255,255,0.12), inset 0 1px 1px rgba(255,255,255,0.3)',
           }}>
             <KeyRound size={26} color="#fff" />
           </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 4 }}>
+          <h1 style={{ fontFamily: "'Urbanist', system-ui, sans-serif", fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: 4, textShadow: '0 1px 12px oklch(0 0 0 / 0.25)' }}>
             Reset Password
           </h1>
-          <p style={{ color: 'rgba(255,255,255,.5)', fontSize: '0.85rem' }}>
+          <p style={{ color: 'rgba(255,255,255,.65)', fontSize: '0.85rem' }}>
             Enter your college email address to receive password reset instructions
           </p>
         </div>
@@ -93,7 +96,7 @@ export default function ForgotPassword() {
               </div>
             )}
 
-            <Link to="/login/student" className="btn btn-ghost btn-sm" style={{ color: 'var(--color-primary-400)' }}>
+            <Link to="/login/student" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,.7)' }}>
               Return to Student Login
             </Link>
           </div>
