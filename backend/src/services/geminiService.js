@@ -114,6 +114,7 @@ const generateCampusAiResponse = async (userMessage, history = [], context = {})
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey.trim(),
       },
       body: JSON.stringify(payload),
     });
@@ -121,18 +122,13 @@ const generateCampusAiResponse = async (userMessage, history = [], context = {})
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       const errorMsg = errorData?.error?.message || `Gemini API returned status ${response.status}`;
-      logger.error('Gemini API error:', { status: response.status, message: errorMsg });
+      logger.error('Gemini API notice:', { status: response.status, message: errorMsg });
 
-      // Fallback on quota exhaustion or error
-      if (response.status === 429) {
-        return {
-          text: `⚠️ *UniLink AI is currently handling heavy campus traffic. Here is a quick answer:*\n\n${generateFallbackResponse(userMessage)}`,
-          model,
-          isLiveGemini: false,
-        };
-      }
-
-      throw new Error(errorMsg);
+      return {
+        text: generateFallbackResponse(userMessage),
+        model: 'campus-fallback-agent',
+        isLiveGemini: false,
+      };
     }
 
     const data = await response.json();

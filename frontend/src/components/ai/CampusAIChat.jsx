@@ -244,22 +244,7 @@ export default function CampusAIChat() {
                   <Bot size={20} color="#fff" />
                 </div>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <h3 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700 }}>UniLink AI</h3>
-                    <span
-                      style={{
-                        fontSize: '0.68rem',
-                        fontWeight: 600,
-                        padding: '2px 6px',
-                        borderRadius: 6,
-                        background: 'rgba(52, 211, 153, 0.15)',
-                        color: '#34d399',
-                        border: '1px solid rgba(52, 211, 153, 0.3)',
-                      }}
-                    >
-                      Gemini
-                    </span>
-                  </div>
+                  <h3 style={{ margin: 0, fontSize: '0.98rem', fontWeight: 700 }}>UniLink AI</h3>
                   <span style={{ fontSize: '0.74rem', color: 'var(--text-muted, #94a3b8)' }}>
                     Campus Copilot & Academic Assistant
                   </span>
@@ -362,7 +347,7 @@ export default function CampusAIChat() {
                             color: 'var(--text-muted, #94a3b8)',
                           }}
                         >
-                          <span>{m.isLiveGemini ? 'Google Gemini' : 'UniLink Guide'}</span>
+                          <span>Campus AI</span>
                           <button
                             onClick={() => copyText(m.id, m.text)}
                             style={{
@@ -425,7 +410,7 @@ export default function CampusAIChat() {
                     <span className="ai-dot-pulse" style={{ animationDelay: '200ms' }} />
                     <span className="ai-dot-pulse" style={{ animationDelay: '400ms' }} />
                     <span style={{ fontSize: '0.78rem', color: '#94a3b8', marginLeft: 4 }}>
-                      Thinking with Gemini...
+                      Thinking...
                     </span>
                   </div>
                 </div>

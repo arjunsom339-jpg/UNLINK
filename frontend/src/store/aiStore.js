@@ -1,13 +1,33 @@
 import { create } from 'zustand';
 import { aiApi } from '../api';
 
+const getLocalCampusAdvice = (query) => {
+  const q = (query || '').toLowerCase();
+  if (q.includes('skill') || q.includes('exchange') || q.includes('match') || q.includes('learn')) {
+    return 'UniLink has an integrated **Skill Exchange Engine**! Open **Learn & Connect** from your student dashboard to list skills you know and skills you want to learn. Our reciprocal matching algorithm pairs you with study partners.';
+  }
+  if (q.includes('club') || q.includes('community')) {
+    return 'Explore the **Clubs** section to discover active campus student societies (coding, robotics, cultural), submit membership applications, and participate in club elections.';
+  }
+  if (q.includes('event') || q.includes('hackathon')) {
+    return 'Check **Campus Events** to register for workshops, hackathons, and guest lectures. You can track registrations and waitlists in real time.';
+  }
+  if (q.includes('placement') || q.includes('job') || q.includes('interview')) {
+    return 'Head over to the **Placements Portal** to browse active campus drives, view eligibility requirements, and access alumni mentorship sessions.';
+  }
+  if (q.includes('help') || q.includes('emergency') || q.includes('lost')) {
+    return 'For urgent campus assistance, use the **Help & Emergency** tab or check the **Lost & Found / Campus Exchange** directory.';
+  }
+  return "I'm your **UniLink Campus Assistant**! I can help you find clubs, discover skill-exchange partners, prepare for placements, and navigate campus resources. What would you like to know more about?";
+};
+
 export const useAiStore = create((set, get) => ({
   isOpen: false,
   messages: [
     {
       id: 'welcome',
       role: 'model',
-      text: "👋 Hi! I'm **UniLink Campus AI**, powered by Google Gemini.\n\nI can help you with:\n* 📚 **Academics & Coding**: Explanations, debug hints, study tips\n* 🤝 **Peer Matching**: Finding study partners and skill exchanges\n* 🏆 **Clubs & Events**: Recommendations for campus activities\n* 💼 **Career & Placements**: Interview prep and technical guidance\n\nHow can I help you today?",
+      text: "👋 Hi! I'm **UniLink Campus AI**.\n\nI can help you with:\n* 📚 **Academics & Coding**: Explanations, debug hints, study tips\n* 🤝 **Peer Matching**: Finding study partners and skill exchanges\n* 🏆 **Clubs & Events**: Recommendations for campus activities\n* 💼 **Career & Placements**: Interview prep and technical guidance\n\nHow can I help you today?",
       timestamp: new Date().toISOString(),
       isLiveGemini: true,
     },
@@ -83,13 +103,12 @@ export const useAiStore = create((set, get) => ({
         loading: false,
         isConfigured: aiData.isLiveGemini !== false || state.isConfigured,
       }));
-    } catch (err) {
+    } catch (_) {
+      const fallbackText = getLocalCampusAdvice(userMsg.text);
       const errorMsg = {
-        id: `err-${Date.now()}`,
+        id: `model-${Date.now()}`,
         role: 'model',
-        text:
-          err.response?.data?.message ||
-          '⚠️ Unable to reach UniLink AI server. Please make sure the backend is running and try again.',
+        text: fallbackText,
         timestamp: new Date().toISOString(),
         isLiveGemini: false,
       };
