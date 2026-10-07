@@ -43,7 +43,7 @@ const generateFallbackResponse = (message) => {
     advice = 'I am here to assist you with academics, study tips, campus clubs, skill exchange, and placement preparation!';
   }
 
-  return `${advice}\n\n> 💡 **Notice**: To unlock live real-time answers powered by Google Gemini, please configure \`GEMINI_API_KEY\` in your \`backend/.env\` (or in your Vercel project environment variables).`;
+  return advice;
 };
 
 /**

@@ -107,6 +107,7 @@ app.use('/api/placements',  placementRoutes);
 app.use('/api/clubs',       clubRoutes);
 app.use('/api/campus-exchange', campusExchangeRoutes);
 app.use('/api/ai',              aiRoutes);
+app.use('/ai',                  aiRoutes);
 
 // ── 404 & Error Handlers ───────────────────────────────────────────────────
 app.use(notFound);

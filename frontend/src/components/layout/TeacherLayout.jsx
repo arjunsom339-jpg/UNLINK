@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { Home, User, LogOut, Bell, BookOpen, Megaphone, Calendar } from 'lucide-react';
+import { Home, User, LogOut, Bell, BookOpen, Megaphone, Calendar, Sparkles } from 'lucide-react';
 import useAuthStore from '../../store/authStore';
+import useAiStore from '../../store/aiStore';
 import ThemeToggle from '../ui/ThemeToggle';
 import toast from 'react-hot-toast';
 
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 
 export default function TeacherLayout() {
   const { user, logout }        = useAuthStore();
+  const { openChat }            = useAiStore();
   const navigate                = useNavigate();
 
   const handleLogout = () => { logout(); toast.success('Logged out'); navigate('/login'); };
@@ -75,6 +77,35 @@ export default function TeacherLayout() {
             </h2>
           </div>
           <div className="topbar__right">
+            <button
+              onClick={openChat}
+              title="Ask Campus AI"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 13px',
+                borderRadius: 9999,
+                background: 'rgba(99,102,241,0.12)',
+                border: '1px solid rgba(99,102,241,0.25)',
+                color: '#818cf8',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(99,102,241,0.22)';
+                e.currentTarget.style.color = '#fff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(99,102,241,0.12)';
+                e.currentTarget.style.color = '#818cf8';
+              }}
+            >
+              <Sparkles size={14} />
+              <span>Ask Campus AI</span>
+            </button>
             <ThemeToggle />
             <button className="topbar__icon-btn"><Bell size={18} /></button>
             <div className="avatar avatar-sm" style={{ background: 'linear-gradient(135deg, #0ea5e9, #6366f1)' }}>{initials}</div>

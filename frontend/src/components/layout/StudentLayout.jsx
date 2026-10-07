@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import {
   Home, BookOpen, Users, AlertTriangle, MessageSquare, User,
-  ChevronRight, ChevronLeft, LogOut, Bell, Search,
+  ChevronRight, ChevronLeft, LogOut, Bell, Search, Sparkles,
   GraduationCap, Calendar, FolderOpen, Award, Briefcase, Compass, ShoppingBag, ShieldAlert
 } from 'lucide-react';
 import useAuthStore from '../../store/authStore';
+import useAiStore from '../../store/aiStore';
 import ThemeToggle from '../ui/ThemeToggle';
 import toast from 'react-hot-toast';
 
@@ -47,6 +48,7 @@ const NAV_SECTIONS = [
 export default function StudentLayout() {
   const [collapsed, setCollapsed]   = useState(false);
   const { user, logout }            = useAuthStore();
+  const { openChat }                = useAiStore();
   const navigate                    = useNavigate();
 
   const handleLogout = () => {
@@ -147,6 +149,35 @@ export default function StudentLayout() {
             </div>
           </div>
           <div className="topbar__right">
+            <button
+              onClick={openChat}
+              title="Ask Campus AI"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '6px 13px',
+                borderRadius: 9999,
+                background: 'rgba(99,102,241,0.12)',
+                border: '1px solid rgba(99,102,241,0.25)',
+                color: '#818cf8',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                transition: 'all 0.18s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(99,102,241,0.22)';
+                e.currentTarget.style.color = '#fff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(99,102,241,0.12)';
+                e.currentTarget.style.color = '#818cf8';
+              }}
+            >
+              <Sparkles size={14} />
+              <span>Ask Campus AI</span>
+            </button>
             <ThemeToggle />
             <button className="topbar__icon-btn topbar__notify-btn" title="Notifications">
               <Bell size={18} />

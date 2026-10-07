@@ -178,63 +178,12 @@ export default function CampusAIChat() {
     return parts.length > 0 ? parts : str;
   };
 
+  if (!isOpen) return null;
+
   return (
     <>
-      {/* ── Floating Launcher Button ────────────────────────────────────────── */}
-      <button
-        onClick={toggleChat}
-        aria-label="UniLink Campus AI"
-        style={{
-          position: 'fixed',
-          bottom: 24,
-          right: 24,
-          zIndex: 9999,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          padding: '12px 18px',
-          borderRadius: 9999,
-          background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
-          color: '#ffffff',
-          border: '1px solid rgba(255,255,255,0.2)',
-          boxShadow: '0 8px 24px -4px rgba(79, 70, 229, 0.45)',
-          cursor: 'pointer',
-          transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-          backdropFilter: 'blur(10px)',
-          fontFamily: 'var(--font-sans, inherit)',
-          fontSize: '0.9rem',
-          fontWeight: 600,
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
-          e.currentTarget.style.boxShadow = '0 12px 28px -4px rgba(79, 70, 229, 0.6)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'none';
-          e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(79, 70, 229, 0.45)';
-        }}
-      >
-        <div style={{ position: 'relative', display: 'flex' }}>
-          <Sparkles size={19} className="ai-sparkle-anim" />
-          <span
-            style={{
-              position: 'absolute',
-              top: -2,
-              right: -2,
-              width: 7,
-              height: 7,
-              borderRadius: '50%',
-              background: '#34d399',
-              boxShadow: '0 0 6px #34d399',
-            }}
-          />
-        </div>
-        <span>UniLink AI</span>
-      </button>
-
-      {/* ── Slide-over / Modal Chat Window ─────────────────────────────────── */}
-      {isOpen && (
-        <div
+      {/* ── Slide-over / Modal Chat Window (Triggered by Ask Campus AI button) ── */}
+      <div
           style={{
             position: 'fixed',
             inset: 0,
@@ -584,7 +533,6 @@ export default function CampusAIChat() {
             </form>
           </div>
         </div>
-      )}
 
       {/* Embedded Animations CSS */}
       <style>{`
